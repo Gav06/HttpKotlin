@@ -79,7 +79,7 @@ fun handleClient(client: Socket) {
             val method = parts.getOrNull(0)
             val path = parts.getOrNull(1)
 
-            if (path == null || path.isEmpty()) {
+            if (path.isNullOrEmpty()) {
                 println("Path is empty")
                 return
             }
@@ -125,6 +125,7 @@ fun handleClient(client: Socket) {
             writer.println("Content-Type: $contentType")
             writer.println("Content-Length: ${bytes.size}")
             writer.println()
+            // write file contents
             writer.println(bytes.toString(Charsets.UTF_8))
             writer.flush()
             writer.close()
